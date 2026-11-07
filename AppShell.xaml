@@ -1,0 +1,11 @@
+<Shell
+    x:Class="Pillstacular.AppShell"
+    xmlns:local="clr-namespace:Pillstacular"
+    Title="Pillstacular">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>

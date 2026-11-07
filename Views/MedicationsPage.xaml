@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Pillstacular.Views.MedicationsPage"
+    Title="My Medications">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="My Medications"
+               FontSize="24"
+               FontAttributes="Bold" />
+
+        <CollectionView x:Name="MedicationsList"
+                        EmptyView="No medications added yet.">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
+                          ColumnDefinitions="*,Auto"
+                          ColumnSpacing="15">
+
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            Spacing="5">
+
+                            <Label Text="{Binding Name}"
+                                   FontAttributes="Bold"
+                                   FontSize="18" />
+
+                            <Label Text="{Binding Nickname}" />
+
+                            <HorizontalStackLayout Spacing="5">
+                                <Label Text="{Binding Strength}" />
+                                <Label Text="{Binding Unit}" />
+                            </HorizontalStackLayout>
+
+                            <Label Text="{Binding Form}" />
+
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout
+                            Grid.Column="1"
+                            Spacing="10"
+                            VerticalOptions="Center">
+
+                            <Button Text="Edit"
+                                    Clicked="OnEditClicked"
+                                    CommandParameter="{Binding .}" />
+
+                            <Button Text="Delete"
+                                    Clicked="OnDeleteClicked"
+                                    CommandParameter="{Binding .}" />
+
+                        </HorizontalStackLayout>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
