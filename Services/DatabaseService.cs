@@ -21,6 +21,16 @@ public class DatabaseService
         await _database.CreateTableAsync<Medication>();
         await _database.CreateTableAsync<MedicationSchedule>();
         await _database.CreateTableAsync<MedicationEntry>();
+
+        var columns = await _database.GetTableInfoAsync(
+            "MedicationSchedule");
+
+        if (!columns.Any(c => c.Name == "DaysOfWeek"))
+        {
+            await _database.ExecuteAsync(
+                "ALTER TABLE MedicationSchedule " +
+                "ADD COLUMN DaysOfWeek TEXT NOT NULL DEFAULT ''");
+        }
     }
 
     // Medication operations
@@ -28,10 +38,14 @@ public class DatabaseService
     public async Task<List<Medication>> GetMedicationsAsync()
     {
         await InitAsync();
-        return await _database!.Table<Medication>().ToListAsync();
+
+        return await _database!
+            .Table<Medication>()
+            .ToListAsync();
     }
 
-    public async Task<int> SaveMedicationAsync(Medication medication)
+    public async Task<int> SaveMedicationAsync(
+        Medication medication)
     {
         await InitAsync();
 
@@ -41,7 +55,8 @@ public class DatabaseService
         return await _database!.UpdateAsync(medication);
     }
 
-    public async Task<int> DeleteMedicationAsync(Medication medication)
+    public async Task<int> DeleteMedicationAsync(
+        Medication medication)
     {
         await InitAsync();
 
@@ -72,6 +87,16 @@ public class DatabaseService
             return await _database!.InsertAsync(schedule);
 
         return await _database!.UpdateAsync(schedule);
+    }
+
+    public async Task<int> DeleteSchedulesAsync(
+        int medicationId)
+    {
+        await InitAsync();
+
+        return await _database!.ExecuteAsync(
+            "DELETE FROM MedicationSchedule WHERE MedicationId = ?",
+            medicationId);
     }
 
     // Medication entry operations

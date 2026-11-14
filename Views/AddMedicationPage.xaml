@@ -99,8 +99,93 @@
                 <Label Text="Scheduled Medication"
                        VerticalOptions="Center" />
                 <Switch x:Name="AsNeededSwitch"
-                        IsToggled="False" />
+                        IsToggled="False"
+                        Toggled="OnScheduleToggled" />
             </HorizontalStackLayout>
+
+            <!-- Scheduling controls -->
+            <VerticalStackLayout
+                x:Name="ScheduleSection"
+                IsVisible="False"
+                Spacing="14"
+                WidthRequest="510">
+
+                <Label Text="Reminder Days"
+                       FontAttributes="Bold" />
+
+                <Grid ColumnDefinitions="*,*,*,*"
+                      RowDefinitions="Auto,Auto"
+                      ColumnSpacing="8"
+                      RowSpacing="12">
+
+                    <CheckBox x:Name="SundayCheck"
+                              Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Sun"
+                           Grid.Row="0" Grid.Column="0"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="MondayCheck"
+                              Grid.Row="0" Grid.Column="1" />
+                    <Label Text="Mon"
+                           Grid.Row="0" Grid.Column="1"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="TuesdayCheck"
+                              Grid.Row="0" Grid.Column="2" />
+                    <Label Text="Tue"
+                           Grid.Row="0" Grid.Column="2"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="WednesdayCheck"
+                              Grid.Row="0" Grid.Column="3" />
+                    <Label Text="Wed"
+                           Grid.Row="0" Grid.Column="3"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="ThursdayCheck"
+                              Grid.Row="1" Grid.Column="0" />
+                    <Label Text="Thu"
+                           Grid.Row="1" Grid.Column="0"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="FridayCheck"
+                              Grid.Row="1" Grid.Column="1" />
+                    <Label Text="Fri"
+                           Grid.Row="1" Grid.Column="1"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+
+                    <CheckBox x:Name="SaturdayCheck"
+                              Grid.Row="1" Grid.Column="2" />
+                    <Label Text="Sat"
+                           Grid.Row="1" Grid.Column="2"
+                           Margin="38,0,0,0"
+                           VerticalOptions="Center"
+                           InputTransparent="True" />
+                </Grid>
+
+                <Label Text="Reminder Times"
+                       FontAttributes="Bold" />
+
+                <VerticalStackLayout
+                    x:Name="ReminderTimesContainer"
+                    Spacing="10" />
+
+                <Button Text="+ Add Reminder Time"
+                        Clicked="OnAddReminderTimeClicked"
+                        HorizontalOptions="Start" />
+            </VerticalStackLayout>
 
             <!-- Save -->
             <Button Text="Save Medication"

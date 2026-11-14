@@ -13,4 +13,6 @@ public class MedicationSchedule
     public TimeSpan ScheduledTime { get; set; }
 
     public double Quantity { get; set; } = 1;
+
+    public string DaysOfWeek { get; set; } = string.Empty;
 }
